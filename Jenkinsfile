@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_REGISTRY = 'Tspringer1204' // Replace with your Docker Hub username
-        DOCKER_IMAGE = 'tariq-docker-image'           // Replace with your image name
+        DOCKER_IMAGE = 'my-jenkins-image'           // Replace with your image name
     }
 
     stages {
