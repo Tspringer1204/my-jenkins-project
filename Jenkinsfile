@@ -1,20 +1,27 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_REGISTRY = 'your-docker-hub-username' // Replace with your Docker Hub username
+        DOCKER_IMAGE = 'my-docker-image'           // Replace with your image name
+    }
+
     stages {
-        stage('Build') {
+        stage('Build Docker Image') {
             steps {
-                echo 'Building the project...'
+                script {
+                    echo 'Building Docker image...'
+                    sh 'docker build -t $DOCKER_REGISTRY/$DOCKER_IMAGE:latest .'
+                }
             }
         }
-        stage('Test') {
+        stage('Push Docker Image') {
             steps {
-                echo 'Running tests...'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying the application...'
+                script {
+                    echo 'Pushing Docker image to Docker Hub...'
+                    sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_REGISTRY --password-stdin'
+                    sh 'docker push $DOCKER_REGISTRY/$DOCKER_IMAGE:latest'
+                }
             }
         }
     }
