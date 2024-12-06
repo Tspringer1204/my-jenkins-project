@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_REGISTRY = 'your-docker-hub-username' // Replace with your Docker Hub username
-        DOCKER_IMAGE = 'my-docker-image'           // Replace with your image name
+        DOCKER_REGISTRY = 'Tspringer1204' // Replace with your Docker Hub username
+        DOCKER_IMAGE = 'tariq-docker-image'           // Replace with your image name
     }
 
     stages {
