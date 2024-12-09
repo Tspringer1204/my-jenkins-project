@@ -1,12 +1,19 @@
 pipeline {
     agent any
-
     environment {
-        DOCKER_REGISTRY = 'Tspringer1204' // Replace with your Docker Hub username
-        DOCKER_IMAGE = 'my-jenkins-image'           // Replace with your image name
+        DOCKER_REGISTRY = 'Tspringer1204' 
+        DOCKER_IMAGE = 'my-jenkins-image'
     }
-
     stages {
+        stage('Test Docker Setup') {
+            steps {
+                script {
+                    echo 'Testing Docker setup...'
+                    sh 'docker --version'
+                    sh 'docker images'
+                }
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 script {
@@ -26,4 +33,3 @@ pipeline {
         }
     }
 }
-
